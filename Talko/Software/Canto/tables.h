@@ -69,9 +69,10 @@ enum {
     _Tb,_Tc,_Ka,_Kb,_Kc,_KXa,_KXb,_KXc
 };
 
-
-// The ormant data has the following format:
-//[allophone],[static frames],[transition frames],[pitch]
+// The formant data has the following format:
+// [formant1 phase-increment],[f2 phase-incr],[f3 phase-incr],
+// [formant1 amplitude],[f2 amp],[f3 amp],
+// [noise-mod]
 
 const uint8_t formantTable[] PROGMEM = {
     0x0, 0x0, 0x0,0x0,0x0,0x0,0x0,/*00 space*/  0x13,0x43,0x5b,0x0,0x0,0x0,0x0,/*01 .*/

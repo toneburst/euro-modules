@@ -10,6 +10,7 @@
 // original code by Peter Knight
 // https://code.google.com/p/tinkerit/wiki/Cantarino
 // Modified by Jean-Luc Deladrière for the Talko modular Synth
+// Further modified by toneburst
 
 // Sound = vowels
 // Pitch = pitch
@@ -31,7 +32,7 @@
 uint16_t pitchPhase, form1Phase,form2Phase,form3Phase;
 uint16_t pitchPhaseInc,form1PhaseInc,form2PhaseInc,form3PhaseInc;
 uint8_t form1Amp,form2Amp,form3Amp;
-uint8_t noiseMod=10;
+uint8_t noiseMod = 10;
 
 const int8_t sinCalc[256] PROGMEM = {
     /* This table rolls a lot of functions together for speed.
@@ -156,9 +157,6 @@ void setup() {
     audioOn();
     display( 15); // Blank display
     Serial.begin(9600);
-
-
-
 }
 
 #define FORMANT_SZ 7
@@ -214,10 +212,9 @@ const uint8_t formantTable[] PROGMEM = {
     0xa,0x6d,0x70,0x0,0x0,0x0,0x0,/*74 Kc*/     0x6,0x54,0x5e,0x0,0x0,0x0,0x0,/*75 KXa*/
     0x6,0x54,0x5e,0x0,0xa,0x5,0x0,/*76 KXb*/    0x26,0x54,0x5e,0x20,0x20,0x0,0x0 /*77 KXc*/
 };
-//0x6,0x54,0x5e,0x0,0x0,0x0,0x0 /*77 KXc*/
 
-int vowels[19]
-{5,6,7,8,9,10,11,12,13,14,16,17,21,48,49,50,51,52,53,};
+int vowels[19] = {5,6,7,8,9,10,11,12,13,14,16,17,21,48,49,50,51,52,53};
+
 uint16_t pitchTable[64] = {
     // Covers A1 to C7
     58,61,65,69,73,77,82,86,92,97,
@@ -286,9 +283,9 @@ void loop() {
         //Serial.println(startFormant);
 
         pitchPhaseInc = startPitch;
-        // pitchPhaseInc = analogRead(0);
+
         do { // deplacer si besoin
-            startFormant= vowels[map(analogRead(1), 0,1024,0,18)];
+            startFormant = vowels[map(analogRead(1), 0,1024,0,18)];
             //startFormant= map( analogRead(1), 0,1020,0,77 );
             //Serial.println(startFormant);
             pitchPhaseInc = pitchTable[map(analogRead(2), 0,1024,0,64)];
@@ -304,6 +301,7 @@ void loop() {
             // {
         } while(digitalRead(2));
 
+        // tweenFrames currently not doing anything, as far as I can tell...
         /*tweenFrames=map( analogRead(4), 0,1024,0,10);
         tweenFrames=10;
         if (tweenFrames) {

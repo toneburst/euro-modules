@@ -28,7 +28,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
-#include <Tables.h>
+#include <tables.h>
 
 // Formant phases
 uint16_t pitchPhase, form1Phase,form2Phase,form3Phase;
@@ -90,7 +90,7 @@ void loop() {
 
         do {
             startFormant = vowels[map(analogRead(1), 0,1024,0,18)];
-            //startFormant= map( analogRead(1), 0,1020,0,77 );
+            //startFormant= map(analogRead(1), 0,1020,0,77);
             //Serial.println(startFormant);
             pitchPhaseInc = pitchTable[map(analogRead(2), 0,1024,0,64)];
             formantPos = formantTable + startFormant * FORMANT_SZ;

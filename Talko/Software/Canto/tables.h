@@ -1,4 +1,6 @@
-
+/* Tables for Canto
+ * Extracted from Cantarino by Peter Knight
+ */
 
 const int8_t sinCalc[256] PROGMEM = {
     /* This table rolls a lot of functions together for speed.
@@ -38,7 +40,7 @@ const int8_t sinCalc[256] PROGMEM = {
     0,-2,-2,-3,-3,-4,-5,-6,-7,-8,-10,-12,-14,-17,-20,-24
 };
 
-const int8_t sqrCalc[256] PROGMEM ={
+const int8_t sqrCalc[256] PROGMEM = {
     0,1,2,2,2,3,3,4,5,5,6,8,9,11,13,16,
     0,1,2,2,2,3,3,4,5,5,6,8,9,11,13,16,
     0,1,2,2,2,3,3,4,5,5,6,8,9,11,13,16,
@@ -115,12 +117,14 @@ const uint8_t formantTable[] PROGMEM = {
     0xa,0x6d,0x70,0x0,0x0,0x0,0x0,/*74 Kc*/     0x6,0x54,0x5e,0x0,0x0,0x0,0x0,/*75 KXa*/
     0x6,0x54,0x5e,0x0,0xa,0x5,0x0,/*76 KXb*/    0x26,0x54,0x5e,0x20,0x20,0x0,0x0 /*77 KXc*/
 };
-//0x6,0x54,0x5e,0x0,0x0,0x0,0x0 /*77 KXc*/
 
-int vowels[19]
-{5,6,7,8,9,10,11,12,13,14,16,17,21,48,49,50,51,52,53,};
+// Vowel indices
+int vowels[19] = {
+    5,6,7,8,9,10,11,12,13,14,16,17,21,48,49,50,51,52,53
+};
+
+// Oscillator phase-increment values for notes A1 to C7
 uint16_t pitchTable[64] = {
-    // Covers A1 to C7
     58,61,65,69,73,77,82,86,92,97,
     103,109,115,122,129,137,145,154,163,173,
     183,194,206,218,231,244,259,274,291,308,
@@ -132,7 +136,7 @@ uint16_t pitchTable[64] = {
 
 // The framelist has the following format:
 //[allophone],[static frames],[transition frames],[pitch]
-
+// Not used in this implementation
 const uint8_t frameList[] PROGMEM = {
     #if 1
     _OH,20,5,20,
